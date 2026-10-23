@@ -1,0 +1,585 @@
+{
+  "data": {
+    "simBundle": {
+      "productPlanCombinations": [
+        {
+          "plan": {
+            "code": "X24XSL29",
+            "name": "SIM 50GB 24m £13 T",
+            "price": {
+              "priceId": "3a373a4c-845b-4971-ad53-396c289659c1",
+              "payMonthlyPrice": 13.0,
+              "wasPayMonthlyPrice": 0.0,
+              "payTodayPrice": 0.0,
+              "wasPayTodayPrice": 0.0,
+              "futurePayMonthlyPrice": 15.5,
+              "futurePrices": [
+                {
+                  "price": 15.5,
+                  "appliedDate": "2027-03-31T22:59:00Z",
+                  "isTloApplied": false,
+                  "__typename": "FuturePrice"
+                },
+                {
+                  "price": 18.0,
+                  "appliedDate": "2028-03-31T22:59:00Z",
+                  "isTloApplied": false,
+                  "__typename": "FuturePrice"
+                }
+              ],
+              "subscriptionTermInMonths": 24,
+              "__typename": "SubsidyPrice"
+            },
+            "planFamily": {
+              "type": "ESSENTIAL",
+              "title": "SIM",
+              "description": "SIM",
+              "specialFeatures": [
+                {
+                  "name": "Max speed 100Mbps",
+                  "richName": "Max speed 100Mbps",
+                  "iconType": "speed-dial",
+                  "__typename": "Feature"
+                }
+              ],
+              "features": [
+                {
+                  "name": "Unlimited minutes and texts",
+                  "richName": "Unlimited minutes and texts",
+                  "iconType": "Unlimited",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Gift data to your family",
+                  "richName": "Gift data to your family",
+                  "iconType": "Gift",
+                  "__typename": "Feature"
+                }
+              ],
+              "extrasLogosText": null,
+              "extrasLogos": [],
+              "__typename": "PlanFamily"
+            },
+            "entitlements": [
+              {
+                "code": "ME_PHONE_MIN",
+                "name": "Included phone minutes",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "minute",
+                "__typename": "Entitlement"
+              },
+              {
+                "code": "ME_SMS_TEXTS",
+                "name": "Included SMS texts",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "text message",
+                "__typename": "Entitlement"
+              },
+              {
+                "code": "ME_DATA_MB",
+                "name": "Included data",
+                "quantity": 50000,
+                "wasQuantity": 0,
+                "unit": "MB",
+                "__typename": "Entitlement"
+              }
+            ],
+            "labels": [
+              {
+                "type": "best",
+                "text": null,
+                "title": "Flash sale - ends 5 November",
+                "subTitle": "Flash sale - ends 5 November",
+                "isWide": true,
+                "position": "TOP",
+                "endDateTime": null,
+                "__typename": "PromotionLabel"
+              }
+            ],
+            "upgradeFee": {
+              "payTodayPrice": null,
+              "wasPayTodayPrice": null,
+              "__typename": "Fee"
+            },
+            "priority": 0,
+            "recommendationCode": null,
+            "dealsAndOffers": "OUR_BEST_DEALS",
+            "__typename": "Plan"
+          },
+          "productPrice": {
+            "priceId": "37f32d0e-a84f-4b51-970f-0c68978bf839",
+            "payMonthlyPrice": 0.0,
+            "wasPayMonthlyPrice": 0.0,
+            "__typename": "SubsidyPrice"
+          },
+          "offerType": "MOBILE",
+          "__typename": "ProductPlanCombination"
+        },
+        {
+          "plan": {
+            "code": "X25XNSU07",
+            "name": "Essentials Plus SIM Unlimited Max 24m £26 T",
+            "price": {
+              "priceId": "70b622c5-006d-47e0-9940-c28b350181b8",
+              "payMonthlyPrice": 26.0,
+              "wasPayMonthlyPrice": 36.0,
+              "payTodayPrice": 0.0,
+              "wasPayTodayPrice": 0.0,
+              "futurePayMonthlyPrice": 28.5,
+              "futurePrices": [
+                {
+                  "price": 28.5,
+                  "appliedDate": "2027-03-31T22:59:00Z",
+                  "isTloApplied": false,
+                  "__typename": "FuturePrice"
+                },
+                {
+                  "price": 31.0,
+                  "appliedDate": "2028-03-31T22:59:00Z",
+                  "isTloApplied": false,
+                  "__typename": "FuturePrice"
+                }
+              ],
+              "subscriptionTermInMonths": 24,
+              "__typename": "SubsidyPrice"
+            },
+            "planFamily": {
+              "type": "ESSENTIAL",
+              "title": "Essentials Plus Max",
+              "description": "Essentials Plus Max",
+              "specialFeatures": [
+                {
+                  "name": "Uncapped speed",
+                  "richName": "Uncapped speed",
+                  "iconType": "speed-dial",
+                  "__typename": "Feature"
+                }
+              ],
+              "features": [
+                {
+                  "name": "Unlimited minutes, texts and data",
+                  "richName": "Unlimited minutes, texts and data",
+                  "iconType": "Unlimited",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Gift data to your family",
+                  "richName": "Gift data to your family",
+                  "iconType": "Gift",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Includes 50GB of EU roaming data",
+                  "richName": "Includes 50GB of EU roaming data",
+                  "iconType": "Plane",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Unlimited data for your watch",
+                  "richName": "Unlimited data for your watch",
+                  "iconType": "Wearables",
+                  "__typename": "Feature"
+                }
+              ],
+              "extrasLogosText": null,
+              "extrasLogos": [],
+              "__typename": "PlanFamily"
+            },
+            "entitlements": [
+              {
+                "code": "ME_DATA_MB",
+                "name": "Included data",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "MB",
+                "__typename": "Entitlement"
+              },
+              {
+                "code": "ME_SMS_TEXTS",
+                "name": "Included SMS texts",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "text message",
+                "__typename": "Entitlement"
+              },
+              {
+                "code": "ME_PHONE_MIN",
+                "name": "Included phone minutes",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "minute",
+                "__typename": "Entitlement"
+              }
+            ],
+            "labels": [
+              {
+                "type": "best",
+                "text": null,
+                "title": "Save £10 a month",
+                "subTitle": "Save £10 a month",
+                "isWide": true,
+                "position": "TOP",
+                "endDateTime": null,
+                "__typename": "PromotionLabel"
+              }
+            ],
+            "upgradeFee": {
+              "payTodayPrice": null,
+              "wasPayTodayPrice": null,
+              "__typename": "Fee"
+            },
+            "priority": 2,
+            "recommendationCode": null,
+            "dealsAndOffers": "OUR_BEST_DEALS",
+            "__typename": "Plan"
+          },
+          "productPrice": {
+            "priceId": "8fbdd907-6b95-49e0-9bb9-8157b0536668",
+            "payMonthlyPrice": 0.0,
+            "wasPayMonthlyPrice": 0.0,
+            "__typename": "SubsidyPrice"
+          },
+          "offerType": "MOBILE",
+          "__typename": "ProductPlanCombination"
+        },
+        {
+          "plan": {
+            "code": "X25KSL10",
+            "name": "Protected Plan",
+            "price": {
+              "priceId": "1260c3e9-25a0-4048-a727-95b575eba48d",
+              "payMonthlyPrice": 9.0,
+              "wasPayMonthlyPrice": 0.0,
+              "payTodayPrice": 0.0,
+              "wasPayTodayPrice": 0.0,
+              "futurePayMonthlyPrice": -1.0,
+              "futurePrices": [],
+              "subscriptionTermInMonths": 1,
+              "__typename": "SubsidyPrice"
+            },
+            "planFamily": {
+              "type": "TEEN",
+              "title": "Protected plan",
+              "description": "Protected plan",
+              "specialFeatures": [
+                {
+                  "name": "Max speed 0.5Mbps",
+                  "richName": "Max speed 0.5Mbps",
+                  "iconType": null,
+                  "__typename": "Feature"
+                }
+              ],
+              "features": [
+                {
+                  "name": "Unlimited minutes and texts",
+                  "richName": "Unlimited minutes and texts",
+                  "iconType": "Unlimited",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Just enough data to use maps, message and share locations",
+                  "richName": "Just enough data to use maps, message and share locations",
+                  "iconType": "KeepConnectedPromise",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Can be gifted more data",
+                  "richName": "Can be gifted more data",
+                  "iconType": "Gift",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Strict parental controls",
+                  "richName": "Strict parental controls",
+                  "iconType": "ParentalControls",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "EU roaming is available",
+                  "richName": "EU roaming is available",
+                  "iconType": "Plane",
+                  "__typename": "Feature"
+                }
+              ],
+              "extrasLogosText": null,
+              "extrasLogos": [],
+              "__typename": "PlanFamily"
+            },
+            "entitlements": [
+              {
+                "code": "ME_SMS_TEXTS",
+                "name": "Included SMS texts",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "text message",
+                "__typename": "Entitlement"
+              },
+              {
+                "code": "ME_PHONE_MIN",
+                "name": "Included phone minutes",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "minute",
+                "__typename": "Entitlement"
+              }
+            ],
+            "labels": [],
+            "upgradeFee": {
+              "payTodayPrice": null,
+              "wasPayTodayPrice": null,
+              "__typename": "Fee"
+            },
+            "priority": 12,
+            "recommendationCode": null,
+            "dealsAndOffers": "OUR_BEST_DEALS",
+            "__typename": "Plan"
+          },
+          "productPrice": {
+            "priceId": "d850adc5-9561-4a5b-9a91-2144576043e0",
+            "payMonthlyPrice": 0.0,
+            "wasPayMonthlyPrice": 0.0,
+            "__typename": "SubsidyPrice"
+          },
+          "offerType": "MOBILE",
+          "__typename": "ProductPlanCombination"
+        },
+        {
+          "plan": {
+            "code": "X24BS0114",
+            "name": "No Frills SIM Unlimited 1m £35",
+            "price": {
+              "priceId": "46b684a8-779e-4bbc-8689-ab164afeeed8",
+              "payMonthlyPrice": 35.0,
+              "wasPayMonthlyPrice": 0.0,
+              "payTodayPrice": 0.0,
+              "wasPayTodayPrice": 0.0,
+              "futurePayMonthlyPrice": 34.5,
+              "futurePrices": [],
+              "subscriptionTermInMonths": 1,
+              "__typename": "SubsidyPrice"
+            },
+            "planFamily": {
+              "type": "ESSENTIAL",
+              "title": "No Frills",
+              "description": "No Frills",
+              "specialFeatures": [
+                {
+                  "name": "Max speed 10Mbps",
+                  "richName": "Max speed 10Mbps",
+                  "iconType": "speed-dial",
+                  "__typename": "Feature"
+                }
+              ],
+              "features": [
+                {
+                  "name": "Unlimited minutes, texts and data",
+                  "richName": "Unlimited minutes, texts and data",
+                  "iconType": "Unlimited",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Gift data to your family",
+                  "richName": "Gift data to your family",
+                  "iconType": "Gift",
+                  "__typename": "Feature"
+                }
+              ],
+              "extrasLogosText": null,
+              "extrasLogos": [],
+              "__typename": "PlanFamily"
+            },
+            "entitlements": [
+              {
+                "code": "ME_DATA_MB",
+                "name": "Included data",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "MB",
+                "__typename": "Entitlement"
+              },
+              {
+                "code": "ME_PHONE_MIN",
+                "name": "Included phone minutes",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "minute",
+                "__typename": "Entitlement"
+              },
+              {
+                "code": "ME_SMS_TEXTS",
+                "name": "Included SMS texts",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "text message",
+                "__typename": "Entitlement"
+              }
+            ],
+            "labels": [],
+            "upgradeFee": {
+              "payTodayPrice": null,
+              "wasPayTodayPrice": null,
+              "__typename": "Fee"
+            },
+            "priority": 16,
+            "recommendationCode": null,
+            "dealsAndOffers": null,
+            "__typename": "Plan"
+          },
+          "productPrice": {
+            "priceId": "e4dddb94-abc6-4dac-9f01-7e84784e148a",
+            "payMonthlyPrice": 0.0,
+            "wasPayMonthlyPrice": 0.0,
+            "__typename": "SubsidyPrice"
+          },
+          "offerType": "MOBILE",
+          "__typename": "ProductPlanCombination"
+        },
+        {
+          "plan": {
+            "code": "X24ASU04",
+            "name": "Full Works iPhone SIM £43 T",
+            "price": {
+              "priceId": "153d6837-7650-4c0a-8783-8b5c29768820",
+              "payMonthlyPrice": 43.0,
+              "wasPayMonthlyPrice": 0.0,
+              "payTodayPrice": 0.0,
+              "wasPayTodayPrice": 0.0,
+              "futurePayMonthlyPrice": 45.5,
+              "futurePrices": [
+                {
+                  "price": 45.5,
+                  "appliedDate": "2027-03-31T22:59:00Z",
+                  "isTloApplied": false,
+                  "__typename": "FuturePrice"
+                },
+                {
+                  "price": 48.0,
+                  "appliedDate": "2028-03-31T22:59:00Z",
+                  "isTloApplied": false,
+                  "__typename": "FuturePrice"
+                }
+              ],
+              "subscriptionTermInMonths": 24,
+              "__typename": "SubsidyPrice"
+            },
+            "planFamily": {
+              "type": "SMART",
+              "title": "Full Works for iPhone",
+              "description": "Full Works for iPhone",
+              "specialFeatures": [
+                {
+                  "name": "Uncapped speed",
+                  "richName": "Uncapped speed",
+                  "iconType": "speed-dial",
+                  "__typename": "Feature"
+                }
+              ],
+              "features": [
+                {
+                  "name": "Unlimited minutes, texts and data",
+                  "richName": "Unlimited minutes, texts and data",
+                  "iconType": "Unlimited",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "5G+ up to 45% faster than 5G",
+                  "richName": "5G+ up to 45% faster than 5G",
+                  "iconType": "Speed",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Gift data to your family",
+                  "richName": "Gift data to your family",
+                  "iconType": "Gift",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Includes 50GB of EU roaming data and further",
+                  "richName": "Includes 50GB of EU roaming data and further",
+                  "iconType": "Globe",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Unlimited data for your watch",
+                  "richName": "Unlimited data for your watch",
+                  "iconType": "Wearables",
+                  "__typename": "Feature"
+                },
+                {
+                  "name": "Network Boost supports you in busy areas",
+                  "richName": "Network Boost supports you in busy areas",
+                  "iconType": "Up",
+                  "__typename": "Feature"
+                }
+              ],
+              "extrasLogosText": "Includes 1 premium Inclusive Extra",
+              "extrasLogos": [
+                {
+                  "iconType": null,
+                  "name": "Apple One",
+                  "richName": null,
+                  "url": "/medias/Apple-One-inclusive-extra-200x200.webp?context=bWFzdGVyfHJvb3R8MTg3NHxpbWFnZS93ZWJwfHN5cy1tYXN0ZXIvcm9vdC9oYjIvaDUwLzEwNDA0NzY1ODU5ODcwL0FwcGxlX09uZV9pbmNsdXNpdmVfZXh0cmFfMjAweDIwMC53ZWJwfDU1YTNiZWNjMzBmYWRkZWY0OWMwODk1Yzk3ZjMyMzQwNTE0MDQ3NmY2NWUyNDdiMTQ2OGIwMThlYTM4MjdlZTc",
+                  "__typename": "Feature"
+                },
+                {
+                  "iconType": null,
+                  "name": "TNT Sports",
+                  "richName": null,
+                  "url": "/medias/TNT-Sports-HBO-Max-inclusive-extra-200x200.webp?context=bWFzdGVyfHJvb3R8NDk5MnxpbWFnZS93ZWJwfHN5cy1tYXN0ZXIvcm9vdC9oZWUvaGEyLzEwNDA0NzY2MTg3NTUwL1ROVF9TcG9ydHNfSEJPX01heF9pbmNsdXNpdmVfZXh0cmFfMjAweDIwMC53ZWJwfDI3YmY5OTNlYTc5MGMxNTQzNWI5NmExMTBlOGI0MzdhZGYyYmRjNDVhZTcwY2U2ZGExYjRmNDU4YjhmZTA4ZGY",
+                  "__typename": "Feature"
+                }
+              ],
+              "__typename": "PlanFamily"
+            },
+            "entitlements": [
+              {
+                "code": "ME_DATA_MB",
+                "name": "Included data",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "MB",
+                "__typename": "Entitlement"
+              },
+              {
+                "code": "ME_SMS_TEXTS",
+                "name": "Included SMS texts",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "text message",
+                "__typename": "Entitlement"
+              },
+              {
+                "code": "ME_PHONE_MIN",
+                "name": "Included phone minutes",
+                "quantity": -1,
+                "wasQuantity": 0,
+                "unit": "minute",
+                "__typename": "Entitlement"
+              }
+            ],
+            "labels": [],
+            "upgradeFee": {
+              "payTodayPrice": null,
+              "wasPayTodayPrice": null,
+              "__typename": "Fee"
+            },
+            "priority": 5,
+            "recommendationCode": null,
+            "dealsAndOffers": "OUR_BEST_DEALS",
+            "__typename": "Plan"
+          },
+          "productPrice": {
+            "priceId": "b932703b-d70d-4452-823e-f868b6fa06ed",
+            "payMonthlyPrice": 0.0,
+            "wasPayMonthlyPrice": 0.0,
+            "__typename": "SubsidyPrice"
+          },
+          "offerType": "MOBILE",
+          "__typename": "ProductPlanCombination"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {"name": "observed_at", "type": "TIMESTAMP", "mode": "REQUIRED", "description": "When the crawl observed the offer (UTC)"},
+  {"name": "competitor", "type": "STRING", "mode": "REQUIRED"},
+  {"name": "source_url", "type": "STRING", "mode": "REQUIRED"},
+  {"name": "offer_type", "type": "STRING", "mode": "REQUIRED"},
+  {"name": "offer_id", "type": "STRING", "mode": "NULLABLE", "description": "The competitor's own ID for the offer"},
+  {"name": "offer_name", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "data_allowance_gb", "type": "FLOAT", "mode": "NULLABLE"},
+  {"name": "unlimited_data", "type": "BOOLEAN", "mode": "REQUIRED"},
+  {"name": "contract_term_months", "type": "INTEGER", "mode": "NULLABLE"},
+  {"name": "monthly_price", "type": "NUMERIC", "mode": "NULLABLE", "description": "List monthly price in GBP"},
+  {"name": "introductory_price", "type": "NUMERIC", "mode": "NULLABLE", "description": "Discounted monthly price in GBP"},
+  {"name": "introductory_months", "type": "INTEGER", "mode": "NULLABLE"},
+  {"name": "upfront_price", "type": "NUMERIC", "mode": "NULLABLE"},
+  {"name": "minutes", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "texts", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "promotion_text", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "handset_manufacturer", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "handset_model", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "handset_storage_gb", "type": "INTEGER", "mode": "NULLABLE"},
+  {"name": "raw_text", "type": "STRING", "mode": "NULLABLE", "description": "Raw source record, e.g. the competitor's API JSON"}
+]
