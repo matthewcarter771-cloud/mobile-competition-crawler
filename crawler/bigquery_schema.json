@@ -17,5 +17,7 @@
   {"name": "promotion_text", "type": "STRING", "mode": "NULLABLE", "description": "The competitor's promotion label as shown"},
   {"name": "promotion_code", "type": "STRING", "mode": "NULLABLE", "description": "Discount code mentioned in promotion_text, e.g. 2OFF"},
   {"name": "promotion_ends_on", "type": "DATE", "mode": "NULLABLE", "description": "End date mentioned in promotion_text, e.g. 'ends 5 November'"},
-  {"name": "raw_text", "type": "STRING", "mode": "NULLABLE", "description": "Raw source record, e.g. the competitor's API JSON; crawler.reparse rebuilds rows from it"}
+  {"name": "raw_text", "type": "STRING", "mode": "NULLABLE", "description": "Raw source record, e.g. the competitor's API JSON; crawler.reparse rebuilds rows from it"},
+  {"name": "total_contract_price", "type": "NUMERIC", "mode": "NULLABLE", "description": "GBP inc VAT over the whole contract at sign-up prices: monthly_price for discount_months, then list_monthly_price for the rest of the term. Excludes mid-contract price rises. NULL when the discount length is unknown"},
+  {"name": "average_monthly_price", "type": "NUMERIC", "mode": "NULLABLE", "description": "total_contract_price / contract_term_months, rounded to the penny. Compares plans with different discounts on an equal footing"}
 ]

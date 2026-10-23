@@ -101,6 +101,22 @@ def test_discount_months_within_contract():
             assert 0 < offer.discount_months <= offer.contract_term_months
 
 
+def test_every_offer_has_a_total_and_average():
+    # Every discount in the fixtures has a known length
+    for offer in all_offers():
+        assert offer.total_contract_price is not None, offer.offer_id
+        assert offer.average_monthly_price is not None, offer.offer_id
+
+
+def test_average_between_discounted_and_list_price():
+    for offer in all_offers():
+        assert (
+            offer.monthly_price
+            <= offer.average_monthly_price
+            <= offer.list_monthly_price
+        ), offer.offer_id
+
+
 def test_data_is_unlimited_or_an_amount_or_explained():
     for offer in all_offers():
         if offer.unlimited_data:

@@ -1,6 +1,6 @@
 from datetime import date, datetime
-from decimal import Decimal
-from pydantic import BaseModel, HttpUrl
+from decimal import ROUND_HALF_UP, Decimal
+from pydantic import BaseModel, HttpUrl, computed_field, model_validator
 
 
 class MobileOffer (BaseModel):
@@ -45,3 +45,66 @@ class MobileOffer (BaseModel):
     promotion_ends_on: date | None = None
 
     raw_text: str | None = None
+
+    @model_validator(mode="after")
+    def check_term_and_discount(self):
+        term = self.contract_term_months
+
+        if term is not None and term < 1:
+            raise ValueError(f"contract_term_months must be at least 1, got {term}")
+
+        if (
+            self.discount_months is not None
+            and term is not None
+            and not 1 <= self.discount_months <= term
+        ):
+            raise ValueError(
+                f"discount_months {self.discount_months} must be between "
+                f"1 and contract_term_months {term}"
+            )
+
+        return self
+
+    # Derived from the prices above, so every competitor uses the same
+    # formula and the totals can't disagree with the prices they come from
+
+    @computed_field
+    @property
+    def total_contract_price(self) -> Decimal | None:
+        """Total paid over the contract at sign-up prices.
+
+        The discounted monthly_price for discount_months, then
+        list_monthly_price for the rest of the term. Excludes mid-contract
+        price rises (e.g. each April), which depend on the start date.
+        None when the discount's length is unknown.
+        """
+        term = self.contract_term_months
+        if (
+            term is None
+            or self.monthly_price is None
+            or self.list_monthly_price is None
+        ):
+            return None
+
+        if self.discount_months is None:
+            if self.monthly_price != self.list_monthly_price:
+                # Discounted, but for an unknown number of months
+                return None
+            return self.list_monthly_price * term
+
+        return (
+            self.monthly_price * self.discount_months
+            + self.list_monthly_price * (term - self.discount_months)
+        )
+
+    @computed_field
+    @property
+    def average_monthly_price(self) -> Decimal | None:
+        """total_contract_price spread evenly over the term, to the penny."""
+        total = self.total_contract_price
+        if total is None:
+            return None
+
+        return (total / self.contract_term_months).quantize(
+            Decimal("0.01"), rounding=ROUND_HALF_UP
+        )

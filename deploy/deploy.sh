@@ -47,6 +47,13 @@ if ! bq --project_id="$PROJECT" show "${PROJECT}:${DATASET}.${TABLE}" >/dev/null
         --description="One row per offer per crawl" \
         "${PROJECT}:${DATASET}.${TABLE}" \
         crawler/bigquery_schema.json
+else
+    # Adds any new columns and updates descriptions. BigQuery refuses to
+    # drop or retype columns this way, which needs a migration instead
+    # (see crawler/reparse.py)
+    bq --project_id="$PROJECT" update \
+        "${PROJECT}:${DATASET}.${TABLE}" \
+        crawler/bigquery_schema.json
 fi
 
 echo "==> Service accounts"

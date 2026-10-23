@@ -35,7 +35,11 @@ def test_schema_matches_model_fields():
     # schema would make every load job fail
     schema_names = [field.name for field in load_schema()]
 
-    assert schema_names == list(MobileOffer.model_fields)
+    # Computed fields (e.g. total_contract_price) are stored too
+    assert schema_names == [
+        *MobileOffer.model_fields,
+        *MobileOffer.model_computed_fields,
+    ]
 
 
 def test_required_schema_fields_are_required_in_model():
@@ -62,6 +66,9 @@ def test_row_is_json_serialisable_with_exact_prices():
     assert row["observed_at"] == "2026-10-23T12:00:00Z"
     assert row["source_url"] == "https://www.three.co.uk/shop/sim-only/pay-monthly"
     assert row["promotion_code"] is None
+    # £10.50 for 6 months then £16 for 18
+    assert row["total_contract_price"] == "351.0"
+    assert row["average_monthly_price"] == "14.63"
 
 
 class FakeLoadJob:
