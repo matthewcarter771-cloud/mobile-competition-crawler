@@ -1,0 +1,1082 @@
+{
+  "plans": [
+    {
+      "name": "Unlimited Plus",
+      "commitmentPeriod": "24 Months",
+      "isSelected": false,
+      "isChildPlanSelected": false,
+      "allowances": [
+        {
+          "type": "TEXT",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "MIN",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "ORIGDATA",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "DATA",
+          "value": "Unlimited",
+          "uom": "-"
+        }
+      ],
+      "monthlyPrice": {
+        "gross": {
+          "value": 26,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 21.66,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 4.34,
+          "uom": "GBP"
+        }
+      },
+      "originalMonthlyPrice": {
+        "gross": {
+          "value": 43,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 35.83,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 7.17,
+          "uom": "GBP"
+        }
+      },
+      "primaryPromotion": {
+        "tag": "127121.unlimited.24m.100mbps.simo.plus.121730",
+        "name": "Great Low Price",
+        "type": "full_duration",
+        "isSpecialPromotionDeal": false,
+        "discountId": "121730",
+        "savingAmount": {
+          "uom": "£",
+          "net": 14.17,
+          "vat": 2.83,
+          "gross": 17
+        }
+      },
+      "eligiblePromotions": {
+        "monthlyPricePromotion": {
+          "tag": "127121.unlimited.24m.100mbps.simo.plus.121730",
+          "name": "Great Low Price",
+          "type": "full_duration",
+          "isSpecialPromotionDeal": false,
+          "discountId": "121730",
+          "savingAmount": {
+            "uom": "£",
+            "net": 14.17,
+            "vat": 2.83,
+            "gross": 17
+          }
+        }
+      },
+      "footNoteCmsIds": [
+        "127121_unlimited_24m_100mbps_simo_plus_121730"
+      ],
+      "badgeUrl": "https://cdn.vodafone.co.uk/en/assets/images/desktop/5g_badge_digital.png",
+      "subType": "unlimited100mbps51",
+      "isCampaignRecommendedPlan": false,
+      "mcpr": {
+        "priceRise": [
+          {
+            "date": "2027-04-01",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 23.75,
+              "vat": 4.75,
+              "gross": 28.5
+            },
+            "labelText": "on 1 April 2027",
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": true,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 2.08,
+              "vat": 0.42,
+              "gross": 2.5
+            }
+          },
+          {
+            "date": "2028-04-01",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 25.83,
+              "vat": 5.17,
+              "gross": 31
+            },
+            "labelText": "on 1 April 2028",
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": true,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 2.08,
+              "vat": 0.42,
+              "gross": 2.5
+            }
+          },
+          {
+            "date": "2028-10-23",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 25.83,
+              "vat": 5.17,
+              "gross": 31
+            },
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": false,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 0,
+              "vat": 0,
+              "gross": 0
+            }
+          }
+        ],
+        "fixedAnnualPriceRiseAmount": {
+          "uom": "£",
+          "net": 2.08,
+          "vat": 0.42,
+          "gross": 2.5
+        }
+      },
+      "planTier": "ST",
+      "trendingPlan": false,
+      "recommended": false,
+      "_links": {
+        "select-plan": {
+          "href": "/simo-purchase/paym/v2/d340b365-3828-4f15-ac53-127907fe7e65/journeys/6ad2b1da-4c65-476e-8701-d420738ff59a/package",
+          "type": "PATCH",
+          "parameters": {
+            "linesQuantity": 1,
+            "planId": "127121",
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "pathParameters": {
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "headers": {
+            "x-org-id": "VFRED"
+          },
+          "requestBody": {
+            "linesQuantity": 1,
+            "planId": "127121"
+          }
+        },
+        "get-related-plans": {
+          "href": "/simo-purchase/paym/v2/d340b365-3828-4f15-ac53-127907fe7e65/plans/127121/relatedPlans?journeyId=6ad2b1da-4c65-476e-8701-d420738ff59a",
+          "type": "GET",
+          "parameters": {
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "planId": "127121",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "queryParameters": {
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a"
+          },
+          "pathParameters": {
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65",
+            "planId": "127121"
+          }
+        }
+      },
+      "id": "127121",
+      "type": "UNLIMITED",
+      "inclusiveProducts": [
+        {
+          "id": "030060",
+          "benefitType": "Advertisement",
+          "premiumBenefit": true
+        },
+        {
+          "id": "110134",
+          "name": "Inclusive roaming in 52 European destinations (25GB)",
+          "premiumBenefit": false,
+          "benefitFeatures": {
+            "new": false,
+            "hardware": false,
+            "isHardware": false
+          }
+        },
+        {
+          "id": "1",
+          "imageUrl": "https://cdn.vodafone.co.uk/en/assets/images/desktop/5g_badge_digital.png",
+          "premiumBenefit": false,
+          "planBenefit": "5G - faster and more responsive than 4G"
+        },
+        {
+          "id": "2",
+          "premiumBenefit": false,
+          "planBenefit": "Unlimited minutes & texts"
+        },
+        {
+          "id": "111871",
+          "name": "Speed: Maximum download of 100 Mbps",
+          "premiumBenefit": false
+        }
+      ],
+      "isRecommended": false,
+      "linesQuantity": 0,
+      "relatedBundlesAvailable": true
+    },
+    {
+      "name": "100GB",
+      "commitmentPeriod": "24 Months",
+      "isSelected": false,
+      "isChildPlanSelected": false,
+      "allowances": [
+        {
+          "type": "TEXT",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "MIN",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "DATA",
+          "value": "100",
+          "uom": "GB"
+        },
+        {
+          "type": "ORIGDATA",
+          "value": "80",
+          "uom": "GB"
+        },
+        {
+          "type": "FREEDATA",
+          "value": "20",
+          "uom": "GB"
+        }
+      ],
+      "monthlyPrice": {
+        "gross": {
+          "value": 24,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 20,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 4,
+          "uom": "GBP"
+        }
+      },
+      "originalMonthlyPrice": {
+        "gross": {
+          "value": 24,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 20,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 4,
+          "uom": "GBP"
+        }
+      },
+      "primaryPromotion": {
+        "tag": "simo2480gbsashbannerapril2026",
+        "name": "Yours for a great price",
+        "type": "sash_banner",
+        "isSpecialPromotionDeal": false
+      },
+      "eligiblePromotions": {
+        "dataPromotion": {
+          "tag": "simo24m.80.ilsonly.20gb.109906.ils",
+          "name": "Includes 20GB additional data",
+          "type": "data_allowance",
+          "isSpecialPromotionDeal": false,
+          "discountId": "109906"
+        }
+      },
+      "footNoteCmsIds": [
+        "simo2480gbsashbannerapril2026"
+      ],
+      "badgeUrl": "https://cdn.vodafone.co.uk/en/assets/images/desktop/5g_badge_digital.png",
+      "subType": "red100mbps",
+      "isCampaignRecommendedPlan": false,
+      "mcpr": {
+        "priceRise": [
+          {
+            "date": "2027-04-01",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 22.08,
+              "vat": 4.42,
+              "gross": 26.5
+            },
+            "labelText": "on 1 April 2027",
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": true,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 2.08,
+              "vat": 0.42,
+              "gross": 2.5
+            }
+          },
+          {
+            "date": "2028-04-01",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 24.17,
+              "vat": 4.83,
+              "gross": 29
+            },
+            "labelText": "on 1 April 2028",
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": true,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 2.08,
+              "vat": 0.42,
+              "gross": 2.5
+            }
+          },
+          {
+            "date": "2028-10-23",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 24.17,
+              "vat": 4.83,
+              "gross": 29
+            },
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": false,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 0,
+              "vat": 0,
+              "gross": 0
+            }
+          }
+        ],
+        "fixedAnnualPriceRiseAmount": {
+          "uom": "£",
+          "net": 2.08,
+          "vat": 0.42,
+          "gross": 2.5
+        }
+      },
+      "planTier": "ST",
+      "trendingPlan": false,
+      "recommended": false,
+      "_links": {
+        "select-plan": {
+          "href": "/simo-purchase/paym/v2/d340b365-3828-4f15-ac53-127907fe7e65/journeys/6ad2b1da-4c65-476e-8701-d420738ff59a/package",
+          "type": "PATCH",
+          "parameters": {
+            "linesQuantity": 1,
+            "planId": "123040",
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "pathParameters": {
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "headers": {
+            "x-org-id": "VFRED"
+          },
+          "requestBody": {
+            "linesQuantity": 1,
+            "planId": "123040"
+          }
+        }
+      },
+      "id": "123040",
+      "type": "RED",
+      "inclusiveProducts": [
+        {
+          "id": "1",
+          "imageUrl": "https://cdn.vodafone.co.uk/en/assets/images/desktop/5g_badge_digital.png",
+          "premiumBenefit": false,
+          "planBenefit": "5G - faster and more responsive than 4G"
+        },
+        {
+          "id": "2",
+          "premiumBenefit": false,
+          "planBenefit": "Unlimited minutes & texts"
+        },
+        {
+          "id": "111871",
+          "name": "Speed: Maximum download of 100 Mbps",
+          "premiumBenefit": false
+        }
+      ],
+      "isRecommended": false,
+      "linesQuantity": 0,
+      "relatedBundlesAvailable": false
+    },
+    {
+      "name": "24mths SIMO Unlmin 500MB Basics Plan",
+      "commitmentPeriod": "24 Months",
+      "isSelected": false,
+      "isChildPlanSelected": false,
+      "allowances": [
+        {
+          "type": "TEXT",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "MIN",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "ORIGDATA",
+          "value": "500",
+          "uom": "MB"
+        },
+        {
+          "type": "DATA",
+          "value": "500",
+          "uom": "MB"
+        }
+      ],
+      "monthlyPrice": {
+        "gross": {
+          "value": 7.87,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 6.56,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 1.31,
+          "uom": "GBP"
+        }
+      },
+      "originalMonthlyPrice": {
+        "gross": {
+          "value": 7.87,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 6.56,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 1.31,
+          "uom": "GBP"
+        }
+      },
+      "eligiblePromotions": {},
+      "subType": "Basics Plan",
+      "isCampaignRecommendedPlan": false,
+      "mcpr": {
+        "priceRise": [
+          {
+            "date": "2027-04-01",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 7.39,
+              "vat": 1.48,
+              "gross": 8.87
+            },
+            "labelText": "on 1 April 2027",
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": true,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 0.83,
+              "vat": 0.17,
+              "gross": 1
+            }
+          },
+          {
+            "date": "2028-04-01",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 8.23,
+              "vat": 1.64,
+              "gross": 9.87
+            },
+            "labelText": "on 1 April 2028",
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": true,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 0.83,
+              "vat": 0.17,
+              "gross": 1
+            }
+          },
+          {
+            "date": "2028-10-23",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 8.23,
+              "vat": 1.64,
+              "gross": 9.87
+            },
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": false,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 0,
+              "vat": 0,
+              "gross": 0
+            }
+          }
+        ],
+        "fixedAnnualPriceRiseAmount": {
+          "uom": "£",
+          "net": 0.83,
+          "vat": 0.17,
+          "gross": 1
+        }
+      },
+      "trendingPlan": false,
+      "recommended": false,
+      "_links": {
+        "select-plan": {
+          "href": "/simo-purchase/paym/v2/d340b365-3828-4f15-ac53-127907fe7e65/journeys/6ad2b1da-4c65-476e-8701-d420738ff59a/package",
+          "type": "PATCH",
+          "parameters": {
+            "linesQuantity": 1,
+            "planId": "113913",
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "pathParameters": {
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "headers": {
+            "x-org-id": "VFRED"
+          },
+          "requestBody": {
+            "linesQuantity": 1,
+            "planId": "113913"
+          }
+        }
+      },
+      "id": "113913",
+      "type": "BASICS_PLAN",
+      "inclusiveProducts": [
+        {
+          "id": "2",
+          "premiumBenefit": false,
+          "planBenefit": "Unlimited minutes & texts"
+        }
+      ],
+      "isRecommended": false,
+      "linesQuantity": 0,
+      "relatedBundlesAvailable": false
+    },
+    {
+      "name": "5GB",
+      "commitmentPeriod": "1 Months",
+      "isSelected": false,
+      "isChildPlanSelected": false,
+      "allowances": [
+        {
+          "type": "TEXT",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "MIN",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "ORIGDATA",
+          "value": "5",
+          "uom": "GB"
+        },
+        {
+          "type": "DATA",
+          "value": "5",
+          "uom": "GB"
+        }
+      ],
+      "monthlyPrice": {
+        "gross": {
+          "value": 30,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 25,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 5,
+          "uom": "GBP"
+        }
+      },
+      "originalMonthlyPrice": {
+        "gross": {
+          "value": 30,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 25,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 5,
+          "uom": "GBP"
+        }
+      },
+      "eligiblePromotions": {},
+      "badgeUrl": "https://cdn.vodafone.co.uk/en/assets/images/desktop/5g_badge_digital.png",
+      "subType": "red100mbps",
+      "isCampaignRecommendedPlan": false,
+      "mcpr": {
+        "priceRise": [
+          {
+            "date": "2026-11-23",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 25,
+              "vat": 5,
+              "gross": 30
+            },
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": false,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 0,
+              "vat": 0,
+              "gross": 0
+            }
+          }
+        ],
+        "fixedAnnualPriceRiseAmount": {
+          "uom": "£",
+          "net": 2.08,
+          "vat": 0.42,
+          "gross": 2.5
+        }
+      },
+      "planTier": "ST",
+      "trendingPlan": false,
+      "recommended": false,
+      "_links": {
+        "select-plan": {
+          "href": "/simo-purchase/paym/v2/d340b365-3828-4f15-ac53-127907fe7e65/journeys/6ad2b1da-4c65-476e-8701-d420738ff59a/package",
+          "type": "PATCH",
+          "parameters": {
+            "linesQuantity": 1,
+            "planId": "123034",
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "pathParameters": {
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "headers": {
+            "x-org-id": "VFRED"
+          },
+          "requestBody": {
+            "linesQuantity": 1,
+            "planId": "123034"
+          }
+        }
+      },
+      "id": "123034",
+      "type": "RED",
+      "inclusiveProducts": [
+        {
+          "id": "1",
+          "imageUrl": "https://cdn.vodafone.co.uk/en/assets/images/desktop/5g_badge_digital.png",
+          "premiumBenefit": false,
+          "planBenefit": "5G - faster and more responsive than 4G"
+        },
+        {
+          "id": "2",
+          "premiumBenefit": false,
+          "planBenefit": "Unlimited minutes & texts"
+        },
+        {
+          "id": "111871",
+          "name": "Speed: Maximum download of 100 Mbps",
+          "premiumBenefit": false
+        }
+      ],
+      "isRecommended": false,
+      "linesQuantity": 0,
+      "relatedBundlesAvailable": false
+    },
+    {
+      "name": "Unlimited",
+      "commitmentPeriod": "24 Months",
+      "isSelected": false,
+      "isChildPlanSelected": false,
+      "allowances": [
+        {
+          "type": "TEXT",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "MIN",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "ORIGDATA",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "DATA",
+          "value": "Unlimited",
+          "uom": "-"
+        }
+      ],
+      "monthlyPrice": {
+        "gross": {
+          "value": 35,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 29.17,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 5.83,
+          "uom": "GBP"
+        }
+      },
+      "originalMonthlyPrice": {
+        "gross": {
+          "value": 35,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 29.17,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 5.83,
+          "uom": "GBP"
+        }
+      },
+      "eligiblePromotions": {},
+      "badgeUrl": "https://cdn.vodafone.co.uk/en/assets/images/desktop/5g_badge_digital.png",
+      "subType": "unlimited100mbps",
+      "isCampaignRecommendedPlan": false,
+      "mcpr": {
+        "priceRise": [
+          {
+            "date": "2027-04-01",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 31.25,
+              "vat": 6.25,
+              "gross": 37.5
+            },
+            "labelText": "on 1 April 2027",
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": true,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 2.08,
+              "vat": 0.42,
+              "gross": 2.5
+            }
+          },
+          {
+            "date": "2028-04-01",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 33.33,
+              "vat": 6.67,
+              "gross": 40
+            },
+            "labelText": "on 1 April 2028",
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": true,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 2.08,
+              "vat": 0.42,
+              "gross": 2.5
+            }
+          },
+          {
+            "date": "2028-10-23",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 33.33,
+              "vat": 6.67,
+              "gross": 40
+            },
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": false,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 0,
+              "vat": 0,
+              "gross": 0
+            }
+          }
+        ],
+        "fixedAnnualPriceRiseAmount": {
+          "uom": "£",
+          "net": 2.08,
+          "vat": 0.42,
+          "gross": 2.5
+        }
+      },
+      "planTier": "ST",
+      "trendingPlan": false,
+      "recommended": false,
+      "_links": {
+        "select-plan": {
+          "href": "/simo-purchase/paym/v2/d340b365-3828-4f15-ac53-127907fe7e65/journeys/6ad2b1da-4c65-476e-8701-d420738ff59a/package",
+          "type": "PATCH",
+          "parameters": {
+            "linesQuantity": 1,
+            "planId": "123048",
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "pathParameters": {
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "headers": {
+            "x-org-id": "VFRED"
+          },
+          "requestBody": {
+            "linesQuantity": 1,
+            "planId": "123048"
+          }
+        }
+      },
+      "id": "123048",
+      "type": "UNLIMITED",
+      "inclusiveProducts": [
+        {
+          "id": "1",
+          "imageUrl": "https://cdn.vodafone.co.uk/en/assets/images/desktop/5g_badge_digital.png",
+          "premiumBenefit": false,
+          "planBenefit": "5G - faster and more responsive than 4G"
+        },
+        {
+          "id": "2",
+          "premiumBenefit": false,
+          "planBenefit": "Unlimited minutes & texts"
+        },
+        {
+          "id": "111871",
+          "name": "Speed: Maximum download of 100 Mbps",
+          "premiumBenefit": false
+        }
+      ],
+      "isRecommended": false,
+      "linesQuantity": 0,
+      "relatedBundlesAvailable": false
+    },
+    {
+      "name": "16GB Basics",
+      "commitmentPeriod": "12 Months",
+      "isSelected": false,
+      "isChildPlanSelected": false,
+      "allowances": [
+        {
+          "type": "TEXT",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "MIN",
+          "value": "Unlimited",
+          "uom": "-"
+        },
+        {
+          "type": "DATA",
+          "value": "16",
+          "uom": "GB"
+        },
+        {
+          "type": "ORIGDATA",
+          "value": "6",
+          "uom": "GB"
+        },
+        {
+          "type": "FREEDATA",
+          "value": "10",
+          "uom": "GB"
+        }
+      ],
+      "monthlyPrice": {
+        "gross": {
+          "value": 7,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 5.84,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 1.16,
+          "uom": "GBP"
+        }
+      },
+      "originalMonthlyPrice": {
+        "gross": {
+          "value": 17,
+          "uom": "GBP"
+        },
+        "net": {
+          "value": 14.17,
+          "uom": "GBP"
+        },
+        "vat": {
+          "value": 2.83,
+          "uom": "GBP"
+        }
+      },
+      "primaryPromotion": {
+        "tag": "12m.basics.6gb.121713",
+        "name": "Includes £10 a month discount",
+        "type": "full_duration",
+        "isSpecialPromotionDeal": false,
+        "discountId": "121713",
+        "savingAmount": {
+          "uom": "£",
+          "net": 8.33,
+          "vat": 1.67,
+          "gross": 10
+        }
+      },
+      "eligiblePromotions": {
+        "monthlyPricePromotion": {
+          "tag": "12m.basics.6gb.121713",
+          "name": "Includes £10 a month discount",
+          "type": "full_duration",
+          "isSpecialPromotionDeal": false,
+          "discountId": "121713",
+          "savingAmount": {
+            "uom": "£",
+            "net": 8.33,
+            "vat": 1.67,
+            "gross": 10
+          }
+        },
+        "dataPromotion": {
+          "tag": "12.month.basics.6gb.sim.only.109045",
+          "name": "16GB UK Data",
+          "type": "data_allowance",
+          "isSpecialPromotionDeal": false,
+          "discountId": "109045"
+        }
+      },
+      "footNoteCmsIds": [
+        "12m_basics_6gb_121713",
+        "12_month_basics_6gb_sim_only_109045"
+      ],
+      "subType": "Basics Plan",
+      "isCampaignRecommendedPlan": false,
+      "mcpr": {
+        "priceRise": [
+          {
+            "date": "2027-04-01",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 7.08,
+              "vat": 1.42,
+              "gross": 8.5
+            },
+            "labelText": "on 1 April 2027",
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": true,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 1.25,
+              "vat": 0.25,
+              "gross": 1.5
+            }
+          },
+          {
+            "date": "2027-10-23",
+            "monthlyPrice": {
+              "uom": "£",
+              "net": 7.08,
+              "vat": 1.42,
+              "gross": 8.5
+            },
+            "dropOffPromotions": [],
+            "annualPriceRiseApplied": false,
+            "fixedAnnualPriceRiseAmount": {
+              "uom": "£",
+              "net": 0,
+              "vat": 0,
+              "gross": 0
+            }
+          }
+        ],
+        "fixedAnnualPriceRiseAmount": {
+          "uom": "£",
+          "net": 1.25,
+          "vat": 0.25,
+          "gross": 1.5
+        }
+      },
+      "trendingPlan": false,
+      "recommended": false,
+      "_links": {
+        "select-plan": {
+          "href": "/simo-purchase/paym/v2/d340b365-3828-4f15-ac53-127907fe7e65/journeys/6ad2b1da-4c65-476e-8701-d420738ff59a/package",
+          "type": "PATCH",
+          "parameters": {
+            "linesQuantity": 1,
+            "planId": "123089",
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "pathParameters": {
+            "journeyId": "6ad2b1da-4c65-476e-8701-d420738ff59a",
+            "platformSessionId": "d340b365-3828-4f15-ac53-127907fe7e65"
+          },
+          "headers": {
+            "x-org-id": "VFRED"
+          },
+          "requestBody": {
+            "linesQuantity": 1,
+            "planId": "123089"
+          }
+        }
+      },
+      "id": "123089",
+      "type": "BASICS_PLAN",
+      "inclusiveProducts": [
+        {
+          "id": "2",
+          "premiumBenefit": false,
+          "planBenefit": "Unlimited minutes & texts"
+        }
+      ],
+      "isRecommended": false,
+      "linesQuantity": 0,
+      "relatedBundlesAvailable": false
+    }
+  ]
+}

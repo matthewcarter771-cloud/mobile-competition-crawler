@@ -1,0 +1,5 @@
+mobile-competition-crawler/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
