@@ -7,11 +7,7 @@ from playwright.async_api import TimeoutError as PlaywrightTimeoutError
 from playwright.async_api import async_playwright
 
 from crawler.competitors.base import OfferParseError
-from crawler.competitors.ee import EECrawler
-from crawler.competitors.three import ThreeCrawler
-from crawler.competitors.vodafone import VodafoneCrawler
-
-CRAWLERS = [ThreeCrawler, VodafoneCrawler, EECrawler]
+from crawler.registry import CRAWLERS
 
 # Set BQ_TABLE (project.dataset.table) to write results to BigQuery;
 # without it the run only prints what it found

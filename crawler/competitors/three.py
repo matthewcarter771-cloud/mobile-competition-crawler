@@ -4,7 +4,12 @@ from datetime import datetime, timezone
 from decimal import Decimal
 
 from crawler.competitors.base import BaseCompetitionCrawler, OfferParseError
-from crawler.competitors.parsing import parse_data, require, to_decimal
+from crawler.competitors.parsing import (
+    parse_data,
+    promotion_fields,
+    require,
+    to_decimal,
+)
 from crawler.models import MobileOffer
 
 
@@ -57,11 +62,11 @@ class ThreeCrawler(BaseCompetitionCrawler):
         observed_at = datetime.now(timezone.utc)
 
         return [
-            self.parse_offering(offering, url, observed_at)
+            self.parse_record(offering, url, observed_at)
             for offering in offerings
         ]
 
-    def parse_offering(self, offering, url, observed_at):
+    def parse_record(self, offering, url, observed_at):
         if not isinstance(offering, dict):
             raise OfferParseError(
                 f"Three offering is not an object: {json.dumps(offering)[:200]}"
@@ -103,6 +108,12 @@ class ThreeCrawler(BaseCompetitionCrawler):
                 context, "plan.discountedMRC"
             ))
 
+            if discounted_price > list_price:
+                raise OfferParseError(
+                    f"{context}: discountedMRC {discounted_price} is above "
+                    f"the list price {list_price}"
+                )
+
         return MobileOffer(
             observed_at=observed_at,
             competitor=self.competitor,
@@ -112,17 +123,23 @@ class ThreeCrawler(BaseCompetitionCrawler):
             offer_name=require(
                 offering, "displayName", str, context, "displayName"
             ),
+            plan_tier=characteristic(plan, "Plan_Type", context),
             data_allowance_gb=data_allowance_gb,
             unlimited_data=unlimited_data,
             contract_term_months=contract_term_months(offering, context),
-            monthly_price=list_price,
-            introductory_price=discounted_price,
-            introductory_months=parse_intro_months(
+            # discountedMRC is a time-limited discount, e.g. "6 months half
+            # price", after which the list price applies
+            monthly_price=(
+                discounted_price if discounted_price is not None
+                else list_price
+            ),
+            list_monthly_price=list_price,
+            discount_months=parse_intro_months(
                 badge, list_price, discounted_price
             ),
             minutes=characteristic(plan, "Minutes", context),
             texts=characteristic(plan, "Text", context),
-            promotion_text=badge,
+            **promotion_fields(badge, observed_at),
             raw_text=json.dumps(offering)
         )
 

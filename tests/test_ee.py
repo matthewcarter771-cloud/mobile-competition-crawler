@@ -2,7 +2,7 @@ import asyncio
 import copy
 import json
 import re
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from decimal import Decimal
 from pathlib import Path
 
@@ -49,7 +49,7 @@ def by_code(body, code):
 
 
 def parse(combination):
-    return EECrawler().parse_combination(combination, URL, OBSERVED_AT)
+    return EECrawler().parse_record(combination, URL, OBSERVED_AT)
 
 
 def set_entitlement(combination, code, quantity):
@@ -68,7 +68,6 @@ def test_parses_every_fixture_plan(body):
     ]
     assert all(o.competitor == "EE" for o in offers)
     assert all(o.offer_type == "SIM Only" for o in offers)
-    assert all(o.upfront_price == Decimal("0.0") for o in offers)
 
 
 def test_flash_sale_plan(body):
@@ -81,7 +80,11 @@ def test_flash_sale_plan(body):
     assert offer.monthly_price == Decimal("13.0")
     assert offer.minutes == "Unlimited"
     assert offer.texts == "Unlimited"
+    assert offer.list_monthly_price == Decimal("13.0")
+    assert offer.discount_months is None
+    assert offer.plan_tier == "ESSENTIAL"
     assert offer.promotion_text == "Flash sale - ends 5 November"
+    assert offer.promotion_ends_on == date(2026, 11, 5)
 
 
 def test_discounted_plan_uses_price_paid(body):
@@ -90,7 +93,8 @@ def test_discounted_plan_uses_price_paid(body):
     assert offer.unlimited_data is True
     assert offer.data_allowance_gb is None
     assert offer.monthly_price == Decimal("26.0")
-    assert offer.introductory_price is None
+    assert offer.list_monthly_price == Decimal("36.0")
+    assert offer.discount_months == 24
     assert offer.promotion_text == "Save £10 a month"
 
 
@@ -98,6 +102,7 @@ def test_plan_without_data_entitlement(body):
     offer = parse(by_code(body, NO_DATA))
 
     assert offer.offer_name == "Protected Plan"
+    assert offer.plan_tier == "TEEN"
     assert offer.data_allowance_gb is None
     assert offer.unlimited_data is False
     assert offer.contract_term_months == 1
@@ -150,8 +155,12 @@ def test_limited_minutes_are_kept_as_a_number(combination):
      "expected plan.price.payMonthlyPrice to be int or float"),
     (lambda c: c["plan"]["price"].update(subscriptionTermInMonths=24.0),
      "expected plan.price.subscriptionTermInMonths to be int"),
-    (lambda c: c["plan"]["price"].update(payTodayPrice="0"),
-     "expected plan.price.payTodayPrice to be int or float"),
+    (lambda c: c["plan"]["price"].update(wasPayMonthlyPrice="36"),
+     "expected plan.price.wasPayMonthlyPrice to be int or float"),
+    (lambda c: c["plan"]["price"].update(wasPayMonthlyPrice=10.0),
+     "wasPayMonthlyPrice 10.0 is below payMonthlyPrice 13.0"),
+    (lambda c: c["plan"].pop("planFamily"),
+     "expected plan.planFamily to be dict"),
     (lambda c: c["plan"].pop("entitlements"),
      "expected plan.entitlements to be list"),
     (lambda c: set_entitlement(c, "ME_DATA_MB", "50000"),
@@ -163,7 +172,8 @@ def test_limited_minutes_are_kept_as_a_number(combination):
 ], ids=[
     "missing plan", "missing code", "missing name", "missing price",
     "price is string", "missing price amount", "term is float",
-    "upfront is string", "missing entitlements", "data is string",
+    "was price is string", "was price below price", "missing planFamily",
+    "missing entitlements", "data is string",
     "data below -1", "missing labels",
 ])
 def test_malformed_plan_raises_descriptive_error(combination, mutate, message):

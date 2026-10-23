@@ -47,7 +47,7 @@ def by_id(body, plan_id):
 
 
 def parse(plan):
-    return VodafoneCrawler().parse_plan(plan, URL, OBSERVED_AT)
+    return VodafoneCrawler().parse_record(plan, URL, OBSERVED_AT)
 
 
 def set_allowance(plan, kind, value, uom):
@@ -76,7 +76,9 @@ def test_full_contract_discount_is_the_monthly_price(body):
     assert offer.data_allowance_gb is None
     assert offer.contract_term_months == 24
     assert offer.monthly_price == Decimal("26")
-    assert offer.introductory_price is None
+    assert offer.list_monthly_price == Decimal("43")
+    assert offer.discount_months == 24
+    assert offer.plan_tier == "UNLIMITED"
     assert offer.promotion_text == "Great Low Price"
 
 
@@ -86,6 +88,9 @@ def test_twelve_month_discounted_plan(body):
     assert offer.contract_term_months == 12
     assert offer.data_allowance_gb == 16.0
     assert offer.monthly_price == Decimal("7")
+    assert offer.list_monthly_price == Decimal("17")
+    assert offer.discount_months == 12
+    assert offer.plan_tier == "BASICS_PLAN"
     assert offer.promotion_text == "Includes £10 a month discount"
 
 
@@ -95,6 +100,8 @@ def test_sash_banner_is_promotion_text_only(body):
     # DATA includes the 20GB bonus on top of the 80GB ORIGDATA
     assert offer.data_allowance_gb == 100.0
     assert offer.monthly_price == Decimal("24")
+    assert offer.list_monthly_price == Decimal("24")
+    assert offer.discount_months is None
     assert offer.promotion_text == "Yours for a great price"
 
 
@@ -133,6 +140,21 @@ def test_discount_without_promotion_raises(plan):
     plan["monthlyPrice"]["gross"]["value"] = 20
 
     with pytest.raises(OfferParseError, match="differs from original"):
+        parse(plan)
+
+
+def test_price_above_original_raises(plan):
+    plan["monthlyPrice"]["gross"]["value"] = 40
+
+    with pytest.raises(OfferParseError, match="is above the original"):
+        parse(plan)
+
+
+def test_whole_contract_discount_that_drops_off_raises(body):
+    plan = copy.deepcopy(by_id(body, FULL_CONTRACT_DISCOUNT))
+    plan["mcpr"]["priceRise"][0]["dropOffPromotions"] = ["121730"]
+
+    with pytest.raises(OfferParseError, match="drop off during the contract"):
         parse(plan)
 
 

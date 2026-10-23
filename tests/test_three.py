@@ -9,7 +9,7 @@ from pathlib import Path
 import pytest
 
 from crawler.competitors.base import OfferParseError
-from crawler.competitors.parsing import parse_data, to_decimal
+from crawler.competitors.parsing import to_decimal
 from crawler.competitors.three import ThreeCrawler, parse_intro_months
 from tests.fakes import FakePage, FakeResponse
 
@@ -41,7 +41,7 @@ def by_id(offerings, offering_id):
 
 
 def parse(offering):
-    return ThreeCrawler().parse_offering(offering, URL, OBSERVED_AT)
+    return ThreeCrawler().parse_record(offering, URL, OBSERVED_AT)
 
 
 def set_characteristic(offering, name, value):
@@ -68,10 +68,13 @@ def test_half_price_plan(offerings):
     assert offer.data_allowance_gb == 120.0
     assert offer.unlimited_data is False
     assert offer.contract_term_months == 24
-    assert offer.monthly_price == Decimal("16.0")
-    assert offer.introductory_price == Decimal("8.0")
-    assert offer.introductory_months == 6
+    assert offer.monthly_price == Decimal("8.0")
+    assert offer.list_monthly_price == Decimal("16.0")
+    assert offer.discount_months == 6
+    assert offer.plan_tier == "Lite"
     assert offer.promotion_text == "6 months half price"
+    assert offer.promotion_code is None
+    assert offer.promotion_ends_on is None
     assert offer.minutes == "Unlimited"
     assert offer.texts == "Unlimited"
 
@@ -81,10 +84,12 @@ def test_unlimited_plan_with_non_discount_badge(offerings):
 
     assert offer.unlimited_data is True
     assert offer.data_allowance_gb is None
+    # The code discount needs the customer to enter it, so isn't applied
     assert offer.monthly_price == Decimal("22.0")
-    assert offer.introductory_price is None
-    assert offer.introductory_months is None
+    assert offer.list_monthly_price == Decimal("22.0")
+    assert offer.discount_months is None
     assert offer.promotion_text == "Get £2 off a month with code 2OFF"
+    assert offer.promotion_code == "2OFF"
 
 
 def test_plan_without_badge(offerings):
@@ -92,7 +97,7 @@ def test_plan_without_badge(offerings):
 
     assert offer.data_allowance_gb == 4.0
     assert offer.promotion_text is None
-    assert offer.introductory_price is None
+    assert offer.monthly_price == offer.list_monthly_price
 
 
 def test_one_month_plan_reads_intro_months_from_sentence_badge(offerings):
@@ -102,9 +107,9 @@ def test_one_month_plan_reads_intro_months_from_sentence_badge(offerings):
     offer = parse(offering)
 
     assert offer.contract_term_months == 1
-    assert offer.monthly_price == Decimal("36.0")
-    assert offer.introductory_price == Decimal("18.0")
-    assert offer.introductory_months == 1
+    assert offer.monthly_price == Decimal("18.0")
+    assert offer.list_monthly_price == Decimal("36.0")
+    assert offer.discount_months == 1
 
 
 def test_raw_text_keeps_full_api_record(offerings):
@@ -121,7 +126,7 @@ def test_monthly_price_chosen_by_type_not_position(offering):
         "price": {"currencyCode": "GBP", "taxIncludedAmount": 5.0},
     })
 
-    assert parse(offering).monthly_price == Decimal("16.0")
+    assert parse(offering).list_monthly_price == Decimal("16.0")
 
 
 def test_commitment_chosen_by_unit_not_position(offering):
@@ -168,23 +173,10 @@ def test_discount_without_matching_badge_keeps_price_but_not_duration(
 
     offer = parse(offering)
 
-    assert offer.introductory_price == Decimal("10.0")
-    assert offer.introductory_months is None
+    assert offer.monthly_price == Decimal("10.0")
+    assert offer.list_monthly_price == Decimal("16.0")
+    assert offer.discount_months is None
     assert offer.promotion_text == "6 months half price"
-
-
-# --- Data allowance parsing --------------------------------------------------
-
-@pytest.mark.parametrize("value, expected", [
-    ("120GB", 120.0),
-    ("4GB", 4.0),
-    ("1.5GB", 1.5),
-    ("250 GB", 250.0),
-    ("Unlimited", None),
-    ("500MB", 0.5),
-])
-def test_parse_data(value, expected):
-    assert parse_data(value) == expected
 
 
 # --- Malformed API data ------------------------------------------------------
@@ -221,6 +213,8 @@ def remove_data_characteristic(o):
      "expected commitment[months].duration to be int"),
     (lambda o: o["plan"].update(discountedMRC="8"),
      "expected plan.discountedMRC to be int or float"),
+    (lambda o: o["plan"].update(discountedMRC=20.0),
+     "discountedMRC 20.0 is above the list price 16.0"),
     (lambda o: o["plan"].update(descriptiveCharacteristic={}),
      "expected plan.descriptiveCharacteristic to be a list"),
     (remove_data_characteristic,
@@ -237,6 +231,7 @@ def remove_data_characteristic(o):
     "missing offeringPrice", "two monthly prices", "no monthly price",
     "non-GBP price", "price is string", "price is bool",
     "no commitment", "duration is string", "discountedMRC is string",
+    "discount above list price",
     "characteristics not a list", "no Data", "unrecognised Data",
     "Minutes not a string", "badge not a string",
 ])

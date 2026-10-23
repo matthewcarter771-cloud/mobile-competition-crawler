@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from decimal import Decimal
 
 from google.cloud import bigquery
@@ -18,9 +18,12 @@ def make_offer(**overrides):
         offer_name="120GB Lite SIMO 24M",
         data_allowance_gb=120.0,
         contract_term_months=24,
-        monthly_price=Decimal("16.0"),
-        introductory_price=Decimal("10.5"),
-        introductory_months=6,
+        plan_tier="Lite",
+        monthly_price=Decimal("10.5"),
+        list_monthly_price=Decimal("16.0"),
+        discount_months=6,
+        promotion_text="Flash sale - ends 5 November",
+        promotion_ends_on=date(2026, 11, 5),
         raw_text='{"id": "1467471_1465711_1455891"}',
     )
     fields.update(overrides)
@@ -53,11 +56,12 @@ def test_row_is_json_serialisable_with_exact_prices():
     row = to_row(make_offer())
 
     assert json.loads(json.dumps(row)) == row
-    assert row["monthly_price"] == "16.0"
-    assert row["introductory_price"] == "10.5"
+    assert row["monthly_price"] == "10.5"
+    assert row["list_monthly_price"] == "16.0"
+    assert row["promotion_ends_on"] == "2026-11-05"
     assert row["observed_at"] == "2026-10-23T12:00:00Z"
     assert row["source_url"] == "https://www.three.co.uk/shop/sim-only/pay-monthly"
-    assert row["upfront_price"] is None
+    assert row["promotion_code"] is None
 
 
 class FakeLoadJob:

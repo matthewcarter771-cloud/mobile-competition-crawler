@@ -3,7 +3,12 @@ import re
 from datetime import datetime, timezone
 
 from crawler.competitors.base import BaseCompetitionCrawler, OfferParseError
-from crawler.competitors.parsing import parse_data, require, to_decimal
+from crawler.competitors.parsing import (
+    parse_data,
+    promotion_fields,
+    require,
+    to_decimal,
+)
 from crawler.models import MobileOffer
 
 
@@ -54,9 +59,9 @@ class VodafoneCrawler(BaseCompetitionCrawler):
 
         observed_at = datetime.now(timezone.utc)
 
-        return [self.parse_plan(plan, url, observed_at) for plan in plans]
+        return [self.parse_record(plan, url, observed_at) for plan in plans]
 
-    def parse_plan(self, plan, url, observed_at):
+    def parse_record(self, plan, url, observed_at):
         if not isinstance(plan, dict):
             raise OfferParseError(
                 f"Vodafone plan is not an object: {json.dumps(plan)[:200]}"
@@ -92,18 +97,32 @@ class VodafoneCrawler(BaseCompetitionCrawler):
                 f"{context}: expected primaryPromotion.name to be str"
             )
 
-        # A discount that isn't known to last the whole contract could be
-        # time-limited, and the API doesn't say for how long, so refuse
-        # to guess which price is the contract price
-        if (
-            price != original_price
-            and promotion_type not in self.FULL_CONTRACT_PROMOTIONS
-        ):
+        if price > original_price:
             raise OfferParseError(
-                f"{context}: price {price} differs from original "
-                f"{original_price} under unrecognised promotion type "
-                f"{promotion_type!r}"
+                f"{context}: price {price} is above the original "
+                f"{original_price}"
             )
+
+        term = parse_commitment(plan, context)
+        discounted = price != original_price
+
+        if discounted:
+            # A discount that isn't known to last the whole contract could
+            # be time-limited, and the API doesn't say for how long, so
+            # refuse to guess which price is the contract price
+            if promotion_type not in self.FULL_CONTRACT_PROMOTIONS:
+                raise OfferParseError(
+                    f"{context}: price {price} differs from original "
+                    f"{original_price} under unrecognised promotion type "
+                    f"{promotion_type!r}"
+                )
+
+            dropped = dropped_promotions(plan, context)
+            if dropped:
+                raise OfferParseError(
+                    f"{context}: whole-contract discount but promotions "
+                    f"drop off during the contract: {dropped}"
+                )
 
         return MobileOffer(
             observed_at=observed_at,
@@ -112,13 +131,16 @@ class VodafoneCrawler(BaseCompetitionCrawler):
             offer_type="SIM Only",
             offer_id=plan_id,
             offer_name=require(plan, "name", str, context, "name"),
+            plan_tier=optional_str(plan, "type", context),
             data_allowance_gb=data_allowance_gb,
             unlimited_data=unlimited_data,
-            contract_term_months=parse_commitment(plan, context),
+            contract_term_months=term,
             monthly_price=price,
+            list_monthly_price=original_price,
+            discount_months=term if discounted else None,
             minutes=allowances.get("MIN"),
             texts=allowances.get("TEXT"),
-            promotion_text=promotion_name,
+            **promotion_fields(promotion_name, observed_at),
             raw_text=json.dumps(plan)
         )
 
@@ -171,6 +193,26 @@ def gross_price(plan: dict, key: str, context: str):
     return to_decimal(require(
         gross, "value", (int, float), context, f"{key}.gross.value"
     ))
+
+
+def optional_str(obj: dict, key: str, context: str) -> str | None:
+    if obj.get(key) is None:
+        return None
+    return require(obj, key, str, context, key)
+
+
+def dropped_promotions(plan: dict, context: str) -> list:
+    # mcpr.priceRise lists each future price change and any promotions
+    # that end at that point
+    rises = (plan.get("mcpr") or {}).get("priceRise") or []
+    if not isinstance(rises, list):
+        raise OfferParseError(f"{context}: expected mcpr.priceRise to be a list")
+
+    return [
+        promotion
+        for rise in rises if isinstance(rise, dict)
+        for promotion in rise.get("dropOffPromotions") or []
+    ]
 
 
 def parse_commitment(plan: dict, context: str) -> int:

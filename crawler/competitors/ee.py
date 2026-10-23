@@ -2,7 +2,7 @@ import json
 from datetime import datetime, timezone
 
 from crawler.competitors.base import BaseCompetitionCrawler, OfferParseError
-from crawler.competitors.parsing import require, to_decimal
+from crawler.competitors.parsing import promotion_fields, require, to_decimal
 from crawler.models import MobileOffer
 
 
@@ -58,11 +58,11 @@ class EECrawler(BaseCompetitionCrawler):
         observed_at = datetime.now(timezone.utc)
 
         return [
-            self.parse_combination(combination, url, observed_at)
+            self.parse_record(combination, url, observed_at)
             for combination in combinations
         ]
 
-    def parse_combination(self, combination, url, observed_at):
+    def parse_record(self, combination, url, observed_at):
         if not isinstance(combination, dict):
             raise OfferParseError(
                 f"EE plan is not an object: {json.dumps(combination)[:200]}"
@@ -83,7 +83,31 @@ class EECrawler(BaseCompetitionCrawler):
             if isinstance(label, dict) and isinstance(label.get("title"), str)
         ]
 
-        upfront = price.get("payTodayPrice")
+        term = require(
+            price, "subscriptionTermInMonths", int,
+            context, "plan.price.subscriptionTermInMonths"
+        )
+
+        monthly_price = to_decimal(require(
+            price, "payMonthlyPrice", (int, float),
+            context, "plan.price.payMonthlyPrice"
+        ))
+
+        # wasPayMonthlyPrice is the pre-discount price, or 0 when there's
+        # no discount
+        was_price = to_decimal(require(
+            price, "wasPayMonthlyPrice", (int, float),
+            context, "plan.price.wasPayMonthlyPrice"
+        ))
+        discounted = was_price != 0
+
+        if discounted and was_price < monthly_price:
+            raise OfferParseError(
+                f"{context}: wasPayMonthlyPrice {was_price} is below "
+                f"payMonthlyPrice {monthly_price}"
+            )
+
+        family = require(plan, "planFamily", dict, context, "plan.planFamily")
 
         return MobileOffer(
             observed_at=observed_at,
@@ -92,33 +116,25 @@ class EECrawler(BaseCompetitionCrawler):
             offer_type="SIM Only",
             offer_id=code,
             offer_name=require(plan, "name", str, context, "plan.name"),
-            # Plans without a data entitlement (e.g. calls-and-texts-only
-            # teen plans) are left as unknown rather than recorded as 0GB
+            plan_tier=require(
+                family, "type", str, context, "plan.planFamily.type"
+            ),
+            # Plans without a data entitlement (e.g. the speed-capped teen
+            # Protected Plan) give no amount, so it's left unknown
             data_allowance_gb=(
                 data_mb / 1000 if data_mb is not None and data_mb >= 0 else None
             ),
             unlimited_data=data_mb == -1,
-            contract_term_months=require(
-                price, "subscriptionTermInMonths", int,
-                context, "plan.price.subscriptionTermInMonths"
-            ),
-            # payMonthlyPrice already includes any discount, and EE's future
-            # prices step up from it, so it's the contract's monthly price.
-            # wasPayMonthlyPrice is the pre-discount price, kept in raw_text
-            monthly_price=to_decimal(require(
-                price, "payMonthlyPrice", (int, float),
-                context, "plan.price.payMonthlyPrice"
-            )),
-            upfront_price=(
-                to_decimal(require(
-                    price, "payTodayPrice", (int, float),
-                    context, "plan.price.payTodayPrice"
-                ))
-                if upfront is not None else None
-            ),
+            contract_term_months=term,
+            # EE's discounts last the whole contract: its future prices step
+            # up from the discounted price by the same fixed rises as
+            # undiscounted plans
+            monthly_price=monthly_price,
+            list_monthly_price=was_price if discounted else monthly_price,
+            discount_months=term if discounted else None,
             minutes=allowance_text(entitlements.get("ME_PHONE_MIN")),
             texts=allowance_text(entitlements.get("ME_SMS_TEXTS")),
-            promotion_text=" | ".join(label_titles) or None,
+            **promotion_fields(" | ".join(label_titles) or None, observed_at),
             raw_text=json.dumps(combination)
         )
 
